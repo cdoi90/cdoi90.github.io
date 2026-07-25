@@ -9,9 +9,9 @@ Navy · Antique Gold · Deep Violet — Finance Fintech personal brand site.
 ├── index.html           ← Home page
 ├── about.html           ← About / career story
 ├── portfolio.html       ← Portfolio showcase (3 cards)
-├── portfolio-1.html     ← Case study: CLV & Churn (Capital City Bank)
-├── portfolio-2.html     ← Case study: $14M Pricing (Mattel)
-├── portfolio-3.html     ← Case study: 14× MQL Growth (SunBytes)
+├── portfolio-1.html     ← Case study 1
+├── portfolio-2.html     ← Case study 2
+├── portfolio-3.html     ← Case study 3
 ├── css/
 │   └── style.css        ← All styles (shared across pages)
 ├── js/
@@ -28,7 +28,7 @@ Navy · Antique Gold · Deep Violet — Finance Fintech personal brand site.
 2. Upload all files maintaining the folder structure above
 3. Go to **Settings → Pages**
 4. Under **Source**, select `main` branch, `/ (root)` folder
-5. Click **Save** — your site will be live at `https://yourusername.github.io/cloe-doi-portfolio`
+5. Click **Save** — your site will be live at `https://yourusername.github.io/your-name-portfolio`
 
 ## Before Going Live — Checklist
 
