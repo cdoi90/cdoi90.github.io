@@ -1,4 +1,4 @@
-# Cloe Doi — Portfolio Website
+# Portfolio Website
 
 Navy · Antique Gold · Deep Violet — Finance Fintech personal brand site.
 
