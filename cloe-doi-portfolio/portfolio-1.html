@@ -9,6 +9,132 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+<style>
+  /* ── SLIDE DECK CAROUSEL ── */
+  .deck-carousel { max-width: 940px; margin: 0 auto; }
+  .deck-stage {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border: 1px solid var(--navy-border, rgba(255,255,255,0.08));
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  }
+  .deck-img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+    cursor: zoom-in;
+    user-select: none;
+    background: #000;
+  }
+  .deck-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(13,27,62,0.72);
+    border: 1px solid var(--violet-bdr, rgba(124,78,196,0.38));
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    z-index: 3;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.15s, opacity 0.2s;
+  }
+  .deck-arrow:hover { background: var(--violet, #7C4EC4); }
+  .deck-arrow:active { transform: translateY(-50%) scale(0.94); }
+  .deck-arrow svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .deck-arrow:disabled { opacity: 0.25; cursor: default; background: rgba(13,27,62,0.5); }
+  .deck-prev { left: 14px; }
+  .deck-next { right: 14px; }
+  .deck-count {
+    position: absolute;
+    bottom: 12px; right: 14px;
+    z-index: 3;
+    font-family: var(--font-mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: rgba(13,27,62,0.72);
+    border: 1px solid var(--navy-border, rgba(255,255,255,0.08));
+    padding: 5px 12px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .deck-dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .deck-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .deck-dot:hover { background: var(--violet-soft, #A47EDD); }
+  .deck-dot.active { background: var(--gold, #C9A84C); transform: scale(1.25); }
+
+  /* Fullscreen lightbox */
+  .deck-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(6,12,28,0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .deck-lightbox.open { display: flex; }
+  .deck-lightbox img {
+    max-width: 94vw;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+  .deck-lb-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1002;
+    transition: background 0.2s;
+  }
+  .deck-lb-close:hover { background: rgba(255,255,255,0.2); }
+  .deck-lb-count {
+    position: absolute;
+    bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
+  @media (max-width: 600px) {
+    .deck-arrow { width: 38px; height: 38px; }
+    .deck-arrow svg { width: 17px; height: 17px; }
+    .deck-dots { gap: 6px; }
+    .deck-dot { width: 8px; height: 8px; }
+  }
+</style>
+
 </head>
 <body>
 <nav id="nav"></nav>
@@ -141,27 +267,43 @@
         </div>
       </div>
 
-      <!-- DASHBOARDS -->
-      <div class="reveal" style="margin-top:56px;">
-        <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--violet-soft); margin-bottom:20px;">Power BI — Product Analytics Dashboards</div>
 
-        <img src="assets/images/dashboard-executive-summary.jpg"
-             alt="Online banking executive summary dashboard showing active users, 90-day churn, multi-feature adoption, average products per household, and a segment snapshot heatmap"
-             style="width:100%; display:block; border-radius:8px; border:1px solid var(--navy-border);">
-        <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; line-height:1.7; color:var(--dim); margin:12px 0 36px;">
-          Executive summary — active users, 90-day churn, multi-feature adoption, and average products per household, with a segment health heatmap across Power, Basic, and Passive users. Metrics redacted for confidentiality.
-        </p>
+  <!-- PRESENTATION DECK -->
+  <section class="project-section">
+    <div class="container">
+      <div class="project-section-label">The Deck</div>
+      <h2 class="project-section-title">Dashboard walkthrough</h2>
+      <p style="color:var(--muted); max-width:620px; margin:-4px 0 32px; line-height:1.7; font-size:15px;">Click through the full strategy deck below — use the arrows, the dots, or your keyboard's ← and → keys. Click any slide to view it fullscreen.</p>
 
-        <img src="assets/images/dashboard-feature-adoption.jpg"
-             alt="Feature adoption analytics dashboard showing a feature engagement scorecard, feature journey funnel, and adoption distribution by number of features used"
-             style="width:100%; display:block; border-radius:8px; border:1px solid var(--navy-border);">
-        <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; line-height:1.7; color:var(--dim); margin:12px 0 0;">
-          Feature adoption — engagement scorecard by feature, journey funnel from login through completion, and adoption distribution by feature depth. Metrics redacted for confidentiality.
-        </p>
+      <div class="deck-carousel reveal" id="deck">
+        <div class="deck-stage">
+          <button class="deck-arrow deck-prev" id="deckPrev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <img class="deck-img" id="deckImg" src="assets/images/ccb_slides/slide01.jpg" alt="Presentation slide 1" draggable="false">
+          <button class="deck-arrow deck-next" id="deckNext" aria-label="Next slide">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="deck-count"><span id="deckCur">1</span> / <span id="deckTotal">2</span></div>
+        </div>
+        <div class="deck-dots" id="deckDots"></div>
       </div>
-
     </div>
   </section>
+
+  <!-- FULLSCREEN LIGHTBOX -->
+  <div class="deck-lightbox" id="deckLightbox" role="dialog" aria-modal="true" aria-label="Slide fullscreen view">
+    <button class="deck-lb-close" id="deckLbClose" aria-label="Close fullscreen">&times;</button>
+    <button class="deck-arrow deck-prev" id="deckLbPrev" aria-label="Previous slide" style="left:24px;">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <img id="deckLbImg" src="" alt="Presentation slide fullscreen" draggable="false">
+    <button class="deck-arrow deck-next" id="deckLbNext" aria-label="Next slide" style="right:24px;">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="deck-count deck-lb-count"><span id="deckLbCur">1</span> / <span id="deckLbTotal">2</span></div>
+  </div>
+
 
   <!-- 03 SOLUTIONS -->
   <section class="project-section">
@@ -229,6 +371,131 @@
   </section>
 
 </div>
+
+
+<!-- ── SLIDE DECK CAROUSEL SCRIPT ── -->
+<script>
+(function () {
+  // ── CONFIG: total number of slides. Files must be named
+  //    assets/images/slides/slide01.jpg ... slide14.jpg ──
+  var TOTAL = 2;
+  var PATH  = 'assets/images/ccb_slides';
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var src = function (n) { return PATH + 'slide' + pad(n) + '.jpg'; };
+
+  var idx = 1;
+
+  var img   = document.getElementById('deckImg');
+  var cur   = document.getElementById('deckCur');
+  var total = document.getElementById('deckTotal');
+  var prev  = document.getElementById('deckPrev');
+  var next  = document.getElementById('deckNext');
+  var dots  = document.getElementById('deckDots');
+
+  var lb      = document.getElementById('deckLightbox');
+  var lbImg   = document.getElementById('deckLbImg');
+  var lbCur   = document.getElementById('deckLbCur');
+  var lbTotal = document.getElementById('deckLbTotal');
+  var lbPrev  = document.getElementById('deckLbPrev');
+  var lbNext  = document.getElementById('deckLbNext');
+  var lbClose = document.getElementById('deckLbClose');
+
+  if (!img) return;
+
+  total.textContent = TOTAL;
+  lbTotal.textContent = TOTAL;
+
+  // Build dots
+  for (var i = 1; i <= TOTAL; i++) {
+    var d = document.createElement('button');
+    d.className = 'deck-dot';
+    d.setAttribute('aria-label', 'Go to slide ' + i);
+    d.dataset.i = i;
+    dots.appendChild(d);
+  }
+  var dotEls = dots.querySelectorAll('.deck-dot');
+
+  function preload(n) {
+    if (n >= 1 && n <= TOTAL) { var p = new Image(); p.src = src(n); }
+  }
+
+  function render() {
+    img.src = src(idx);
+    img.alt = 'Presentation slide ' + idx;
+    cur.textContent = idx;
+    prev.disabled = (idx === 1);
+    next.disabled = (idx === TOTAL);
+    dotEls.forEach(function (d) {
+      d.classList.toggle('active', +d.dataset.i === idx);
+    });
+    if (lb.classList.contains('open')) {
+      lbImg.src = src(idx);
+      lbCur.textContent = idx;
+    }
+    preload(idx + 1);
+    preload(idx - 1);
+  }
+
+  function go(n) {
+    idx = Math.max(1, Math.min(TOTAL, n));
+    render();
+  }
+
+  prev.addEventListener('click', function () { go(idx - 1); });
+  next.addEventListener('click', function () { go(idx + 1); });
+  dots.addEventListener('click', function (e) {
+    var b = e.target.closest('.deck-dot');
+    if (b) go(+b.dataset.i);
+  });
+
+  // Fullscreen
+  function openLb() {
+    lbImg.src = src(idx);
+    lbCur.textContent = idx;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  img.addEventListener('click', openLb);
+  lbClose.addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', function () { go(idx - 1); });
+  lbNext.addEventListener('click', function () { go(idx + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+
+  // Keyboard
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  go(idx - 1);
+    if (e.key === 'ArrowRight') go(idx + 1);
+    if (e.key === 'Escape' && lb.classList.contains('open')) closeLb();
+  });
+
+  // Touch swipe (stage + lightbox)
+  var x0 = null;
+  function swipeStart(e) { x0 = e.changedTouches[0].clientX; }
+  function swipeEnd(e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }
+  [img, lb].forEach(function (el) {
+    el.addEventListener('touchstart', swipeStart, { passive: true });
+    el.addEventListener('touchend', swipeEnd, { passive: true });
+  });
+
+  render();
+})();
+</script>
+
+<script src="js/main.js"></script>
+<script>injectNav('portfolio');</script>
+</body>
+</html>
+
+
 
 <div id="site-footer"></div>
 <script src="js/main.js"></script>
