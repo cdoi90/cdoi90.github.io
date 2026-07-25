@@ -24,7 +24,7 @@ Navy · Antique Gold · Deep Violet — Finance Fintech personal brand site.
 
 ## GitHub Pages Deployment
 
-1. Create a new repository on GitHub (e.g. `cloe-doi-portfolio`)
+1. Create a new repository on GitHub (e.g. `your-name-portfolio`)
 2. Upload all files maintaining the folder structure above
 3. Go to **Settings → Pages**
 4. Under **Source**, select `main` branch, `/ (root)` folder
