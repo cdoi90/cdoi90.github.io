@@ -32,13 +32,13 @@ Navy · Antique Gold · Deep Violet — Finance Fintech personal brand site.
 
 ## Before Going Live — Checklist
 
-- [ ] Place your resume PDF at `assets/Doi_Resume.pdf`
+- [ ] Place your resume PDF at `assets/yourresume.pdf`
 - [ ] Replace placeholder images in portfolio detail pages:
   - Find the `<div class="media-box">` elements
   - Add `<img src="assets/images/your-chart.png" alt="description">` inside each
 - [ ] Add cover images to portfolio cards in `portfolio.html`:
   - Replace `<div class="portfolio-card-img-placeholder">` with `<img class="portfolio-card-img" src="assets/images/project-cover.jpg" alt="...">`
-- [ ] Update LinkedIn URL if different from `https://www.linkedin.com/in/ha-doi/`
+- [ ] Update LinkedIn URL if different from `https://www.linkedin.com/in/your-linkedin
 - [ ] Review all content for accuracy
 
 ## Customization
