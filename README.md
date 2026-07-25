@@ -18,8 +18,8 @@ Navy · Antique Gold · Deep Violet — Finance Fintech personal brand site.
 │   └── main.js          ← Shared nav, footer, animations
 └── assets/
     ├── images/
-    │   └── ha-doi.jpg   ← Profile photo
-    └── Doi_Resume.pdf   ← Place your resume PDF here
+    │   └── your-picture.jpg   ← Profile photo
+    └── Yourresume.pdf   ← Place your resume PDF here
 ```
 
 ## GitHub Pages Deployment
