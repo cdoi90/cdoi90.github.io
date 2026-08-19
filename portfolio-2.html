@@ -3,11 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Optimize Pricing for $200M portfolio — Cloe Doi</title>
+<title>Localization &amp; Market-Entry Strategy — Cloe Doi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  /* ── CHART CAPTION ── */
+  .chart-caption {
+    font-family: var(--font-mono, monospace);
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--dim, #9aa3b8);
+    margin-top: 10px;
+    font-style: italic;
+  }
+  .chart-block { margin-top: 28px; }
+  .chart-block:first-child { margin-top: 0; }
+
+  /* ── ZOOMABLE IMAGE + LIGHTBOX ── */
+  .zoomable-img {
+    cursor: zoom-in;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--navy-border, rgba(255,255,255,0.08));
+    display: block;
+  }
+  .img-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(6,12,28,0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .img-lightbox.open { display: flex; }
+  .img-lightbox img {
+    max-width: 94vw;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    background: #fff;
+  }
+  .img-lightbox-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1002;
+    transition: background 0.2s;
+  }
+  .img-lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── VIDEO SHOWCASE ── */
+  .video-showcase { max-width: 940px; margin: 0 auto; }
+  .video-showcase video {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid var(--navy-border, rgba(255,255,255,0.08));
+    box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    background: #000;
+  }
+</style>
 </head>
 <body>
 <nav id="nav"></nav>
@@ -19,13 +87,14 @@
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       Back to Portfolio
     </a>
-    <div class="project-tag">Consumer Goods · Pricing Strategy · P&amp;L</div>
-    <h1 class="project-title fade-up delay-1">$200M Portfolio <br>Pricing Optimization Strategy</h1>
-    <p class="project-subtitle fade-up delay-2">Data-driven pricing that unlocked incremental revenue at Mattel.</p>
+    <div class="project-tag">Market Sizing · Prioritization Framework · Independent Analysis</div>
+    <h1 class="project-title fade-up delay-1">Localization &amp; Market-Entry Strategy<br>for a Saturated App Market</h1>
+    <p class="project-subtitle fade-up delay-2">An independent market-sizing and prioritization framework — built on 17K+ apps — for deciding where to localize and where to build next.</p>
     <div class="project-meta fade-up delay-3">
-      <div class="project-meta-item"><div class="project-meta-label">Company</div><div class="project-meta-value">Mattel · American Girl Brand</div></div>
-      <div class="project-meta-item"><div class="project-meta-label">Role</div><div class="project-meta-value">Marketing Strategy Intern</div></div>
-      <div class="project-meta-item"><div class="project-meta-label">Tools</div><div class="project-meta-value">SQL · Tableau · P&amp;L Modeling · Hypothesis Testing</div></div>
+      <div class="project-meta-item"><div class="project-meta-label">Case Subject</div><div class="project-meta-value">Kairosoft · Independent Analysis · App Store</div></div>
+      <div class="project-meta-item"><div class="project-meta-label">Role</div><div class="project-meta-value">Product Strategy Analyst (self-directed)</div></div>
+      <div class="project-meta-item"><div class="project-meta-label">Period</div><div class="project-meta-value">May 2025</div></div>
+      <div class="project-meta-item"><div class="project-meta-label">Tools</div><div class="project-meta-value">Power BI · DAX</div></div>
     </div>
   </div>
 </section>
@@ -34,13 +103,10 @@
 <section class="highlights-band">
   <div class="container">
     <div class="highlights-grid">
-      <div class="highlight-item reveal"><span class="highlight-num" data-count="14" data-prefix="$" data-suffix="M">$14M</span><div class="highlight-label">Projected incremental revenue</div></div>
- <div class="highlight-item reveal"><span class="highlight-num" data-count="30" data-suffix="K">K</span><div class="highlight-label">Projected unit sales</div></div>
-
-      <div class="highlight-item reveal"><span class="highlight-num" data-count="2" data-suffix="M">2M</span><div class="highlight-label">Sales &amp; production records analyzed</div></div>
- <div class="highlight-item reveal"><span class="highlight-num" data-count="5"></span><div class="highlight-label">Lines of Products</div></div>
-
-
+      <div class="highlight-item reveal"><span class="highlight-num" data-count="17" data-suffix="K">17K</span><div class="highlight-label">apps analyzed</div></div>
+ <div class="highlight-item reveal"><span class="highlight-num" data-count="9" data-suffix="K">9K</span><div class="highlight-label">developers</div>
+      <div class="highlight-item reveal"><span class="highlight-num" data-count="115" data-suffix="">115</span><div class="highlight-label">language markets</div></div>
+      <div class="highlight-item reveal"><span class="highlight-num" data-count="21" data-suffix="">21</span><div class="highlight-label">genres</div></div>
     </div>
   </div>
 </section>
@@ -52,24 +118,27 @@
   <section class="project-section">
     <div class="container">
       <div class="project-section-label">01 — Background</div>
-      <h2 class="project-section-title">The challenge</h2>
+      <h2 class="project-section-title">The strategic question</h2>
       <div class="project-2col">
         <div class="project-text reveal">
-          <p>Mattel's American Girl non-doll category had been underperforming relative to its competitors. Wholesale customers and leaders needed a <strong>rigorous, data-backed pricing strategy</strong> to take back market share and remove customers' confusion on prices without damaging brand perception</p>
-          <p>The challenge required understanding not just the data, but the competitive landscape, consumer price sensitivity, and financial viability — bringing together marketing analytics, finance, and consumer research.</p>
+          <p>New app releases peaked in 2016 and have declined every year since, signaling the mobile app market's shift from growth to saturated, high-competition.</p>
+
+<p>For publishers still investing, the question is no longer "how do we grow everywhere" — it's "where is there real whitespace, and where are we positioned to win."</p>
+
+<p>This project builds a repeatable framework to answer that. It analyzes 17,000+ apps across 21 genres and 115 language markets, using Kairosoft — a Japanese developer with a broad international catalog — as the illustrative case.</p>
+          <p>This project builds a repeatable framework to answer that question: 17,000+ apps analyzed across 21 genres and 115 language markets, using Kairosoft — a Japanese game developer with a broad international catalog — as the illustrative case.</p>
           <ul>
-            <li>Assess FY21–22 financial performance across the non-doll category</li>
-            <li>Model competitive pricing and consumer price sensitivity</li>
-            <li>Build a P&amp;L-validated pricing optimization strategy</li>
-            <li>Identify secondary revenue opportunities (resale, rebranding)</li>
+            <li>Size and structure the market by rating, language, price, genre, and app size</li>
+            <li>Identify what separates high-performing apps from underperforming ones</li>
+            <li>Build a scoring model to quantify market whitespace objectively, not anecdotally</li>
+            <li>Translate the analysis into a ranked set of localization and expansion recommendations</li>
           </ul>
         </div>
         <div class="reveal">
-          <div class="Data-set-describe" title="Data Preparation">
-            <svg class="media-box-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span class="media-box-label">Data-set-describe-1-300x264</span>
-       
-          </div>
+          <img src="assets/images/app-release-trend.jpg"
+               alt="App release trend, 2008-2019, showing new releases peaking in 2016 and declining through 2019"
+               class="zoomable-img">
+          <div class="chart-caption">App release volume by year — the basis for calling this a saturated, post-growth market.</div>
         </div>
       </div>
     </div>
@@ -82,58 +151,74 @@
       <h2 class="project-section-title">Approach &amp; Methodology</h2>
       <div class="project-2col">
         <div class="project-text reveal">
-          <p>The work began with a <strong>deep SQL analysis of 2M sales and production records</strong> to establish baseline performance across FY21–25 for the non-doll category. I used Tableau to visualize trends and surface anomalies in revenue, margin, and volume.</p>
-          <p>The pricing strategy was built in three layers:</p>
           <ul>
-            <li><strong>Competitive analysis:</strong> Mapped competitors' pricing across key SKUs and identified white-space opportunities where American Girl could command a premium</li>
-            <li><strong>Consumer price sensitivity modeling:</strong> Analyzed purchase data and elasticity signals to model how consumers respond to price changes at different price points</li>
- <li><strong>Identify key variables for price</strong> Used regression models to find key factors for Mattel price</li>
-            <li><strong>P&amp;L hypothesis testing:</strong> Applied statistical hypothesis testing to evaluate pricing scenarios against profitability thresholds — validating the $14MM revenue projection with financial rigor</li>
- <li><strong>Competitive analysis:</strong> Mapped competitors' pricing across key SKUs and identified white-space opportunities where American Girl could command a premium</li>
-
-            <li><strong>Netnography study:</strong> Conducted netnographic consumer research to predict demand and preferences for a resale strategy</li>
-
+            <li><strong>Structured the dataset</strong> across genre, language, rating, size, and performance dimensions to enable cross-cutting analysis, not just single-variable summaries</li>
+            <li><strong>Defined a "high-performing app" benchmark</strong> (≥4★ rating, ≥500 reviews) to separate genuine market validation from noise</li>
+            <li><strong>Built a Gap Score model</strong> — relative demand × (1 − relative competition) × existing success rate — to rank every genre-language combination by opportunity, with a minimum sample size before a combination is scored at all</li>
+            <li><strong>Built a star schema model and a Power BI dashboard</strong> so the scoring model stays usable for ongoing prioritization, not just a one-time read</li>
           </ul>
         </div>
         <div class="reveal">
-          <div class="media-box" title="Click to replace with your image">
-            <svg class="media-box-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span class="media-box-label">Methodology Visual</span>
-            <span class="media-box-hint">Insert Tableau chart or pricing model screenshot</span>
-          </div>
+          <img src="assets/images/app_store_data_schema.png"
+               alt="App-Store-Data-Schema"
+               style="width:100%; border-radius:8px; border:1px solid var(--navy-border);">
         </div>
       </div>
     </div>
   </section>
 
   <!-- SOLUTIONS -->
-  <section class="project-section">
+  <section class="project-section" style="background:var(--navy-mid);">
     <div class="container">
       <div class="project-section-label">03 — Solutions &amp; Analysis</div>
       <h2 class="project-section-title">Strategy &amp; deliverables</h2>
+      <p style="color:var(--muted); max-width:760px; margin:-4px 0 32px; line-height:1.7; font-size:15px;">The analysis pointed to two complementary growth levers, sequenced by strength of evidence rather than size of headline number.</p>
+
       <div class="project-2col">
-        <div class="reveal">
-          <div class="media-box" style="aspect-ratio:4/3;" title="Click to replace with your image">
-            <svg class="media-box-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            <span class="media-box-label">Pricing Model / Chart</span>
-            <span class="media-box-hint">Insert pricing analysis or P&amp;L chart</span>
-          </div>
-          <div class="media-box" style="aspect-ratio:4/3; margin-top:16px;" title="Click to replace with your image">
-            <svg class="media-box-icon" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <span class="media-box-label">Competitive Analysis Visual</span>
-            <span class="media-box-hint">Insert competitive landscape or sensitivity chart</span>
-          </div>
-        </div>
         <div class="project-text reveal">
-          <p>The final pricing strategy recommended <strong>strategic price adjustments across the 30K-unit non-doll category</strong>, validated across three P&amp;L scenarios — conservative, base, and optimistic — each tested for statistical significance.</p>
-          <p>A secondary resale strategy was developed in parallel, identifying $800K in incremental revenue opportunity through a structured secondhand marketplace approach grounded in netnography findings.</p>
-          <ul>
-            <li>Delivered complete pricing optimization strategy with P&amp;L validation across three scenarios</li>
-            <li>Built competitor pricing map across 20+ key SKUs</li>
-            <li>Recommended rebranding initiatives that increased customer satisfaction by 10% and online conversion by 0.5%</li>
-            <li>Presented resale strategy with $800K revenue projection to senior brand management</li>
-          </ul>
+          <p><strong>Primary — localize into markets with proven demand and minimal competition.</strong> In the Localization Opportunity model, Kanuri, Tajik, and Turkmen rank highest, each with 100% of tracked apps clearing the high-performing bar (≥4★ rating and ≥500 reviews). The low app count in these markets works in their favor: fewer existing apps means less competition for a new localized release, while the ≥500-review threshold on the apps that are already there confirms real user demand exists. These are the markets I'd prioritize first.</p>
         </div>
+        <div class="reveal">
+          <img src="assets/images/localization-opportunity-validated-markets.jpg"
+               alt="Localization Opportunity - Validated Markets table, ranked by percent high-performing apps and total app count"
+               class="zoomable-img">
+          <div class="chart-caption">High-performing app = ≥4★ rating and ≥500 reviews. "Validated" requires n ≥ 2 tracked apps per market.</div>
+        </div>
+      </div>
+
+      <div class="project-2col" style="margin-top:40px;">
+        <div class="project-text reveal">
+          <p><strong>Secondary — build for the genre-language whitespace the Gap Score model surfaces.</strong> Weighting relative demand, relative competition, and existing success rate together, Sports apps in Spanish (0.30) and Portuguese (0.25) — and to a lesser extent French (0.19) — stand out as the strongest underserved combination: real demand, few existing competitors, and a high bar already cleared by the handful of apps that do exist there.</p>
+        </div>
+        <div class="reveal">
+          <img src="assets/images/market-opportunity-gap-score.jpg"
+               alt="Market Opportunity gap-score matrix by language and genre"
+               class="zoomable-img">
+          <div class="chart-caption">Gap Score = relative demand × (1 − relative competition) × % high-performing apps, normalized 0–1, scored only where a genre-language combination has 3+ apps.</div>
+        </div>
+      </div>
+
+      <div class="project-text reveal" style="margin-top:32px;">
+        <p><strong>Trade-off:</strong> localization is the lower-risk, faster-payoff move — it leans on markets where a version of the app already works. New-app development in the Sports/Spanish-Portuguese whitespace has a larger prize but means building something from scratch in a genre-market combination the portfolio hasn't validated yet. I'd sequence localization first and treat new-genre development as a second-horizon bet, re-scoped once localization results are in.</p>
+        <ul>
+          <li>Operationalized both the Gap Score model and the Localization Opportunity table in a Power BI dashboard, so this is a live prioritization tool the team can re-run as new app data comes in — not a one-time deck</li>
+          <li><strong>If I owned this roadmap:</strong> ship the top validated localization markets (Kanuri, Tajik, Turkmen) first, instrument download and retention lift post-launch, and use that real data to re-weight the model before committing to the Sports whitespace bet</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD WALKTHROUGH -->
+  <section class="project-section">
+    <div class="container">
+      <div class="project-section-label">Dashboard Walkthrough</div>
+      <h2 class="project-section-title">Interactive Dashboard</h2>
+      <p style="color:var(--muted); margin:-4px 0 32px; line-height:1.7; font-size:15px;">A short screen recording of the live Power BI dashboard — filtering by genre and language, and drilling into the Gap Score and Localization Opportunity models interactively.</p>
+      <div class="video-showcase reveal">
+                  <source src="assets/videos/dashboard-walkthrough.mp4" type="video/mp4">
+          Your browser doesn't support embedded video —
+          <a href="assets/videos/dashboard-walkthrough.mp4">download the recording</a> instead.
+        </video>
       </div>
     </div>
   </section>
@@ -141,24 +226,57 @@
   <!-- RESULTS -->
   <section class="project-section" style="background:var(--navy-mid);">
     <div class="container">
-      <div class="project-section-label">04 — Results</div>
-      <h2 class="project-section-title">Impact &amp; Outcomes</h2>
+      <div class="project-section-label">04 — Recommended Priorities</div>
+      <h2 class="project-section-title">What the analysis produced</h2>
+      <p class="chart-caption" style="margin-bottom:20px;">This is an independent analysis on public App Store data, not a deployed initiative — figures below describe the model's output, not measured business results.</p>
       <div class="results-grid reveal">
-        <div class="result-card"><span class="result-num" data-count="14" data-prefix="$" data-suffix="M">$14M</span><div class="result-desc">Projected incremental revenue from pricing strategy across 30K non-doll category units</div></div>
-        <div class="result-card"><span class="result-num" data-count="800" data-prefix="$" data-suffix="K">$800K</span><div class="result-desc">Projected incremental revenue from the resale strategy developed through netnography research</div></div>
-        <div class="result-card"><span class="result-num" data-count="10" data-suffix="%">10%</span><div class="result-desc">Increase in customer satisfaction through qualitative analysis and strategic rebranding initiatives</div></div>
-        <div class="result-card"><span class="result-num" data-count="0.5" data-suffix="%" data-dec="1">0.5%</span><div class="result-desc">Lift in online conversion rate from rebranding and UX recommendations</div></div>
+        <div class="result-card"><span class="result-num" data-count="13" data-suffix="">13</span><div class="result-desc">Markets clearing the high-performing-app bar (n ≥ 2), ranked by confidence for localization</div></div>
+        <div class="result-card"><span class="result-num" data-count="0.30" data-suffix="">0.30</span><div class="result-desc">Top Gap Score identified — Spanish-language Sports apps, the strongest new-app whitespace candidate</div></div>
       </div>
+
       <div style="margin-top:40px; display:flex; gap:14px; flex-wrap:wrap;">
         <a href="portfolio-1.html" class="btn-ghost">← Previous Project</a>
-        <a href="portfolio-3.html" class="btn-primary">Next Project →</a>
+        <a href="portfolio-4.html" class="btn-primary">Next Project →</a>
       </div>
     </div>
   </section>
 
 </div>
 
+<!-- LIGHTBOX (shared by all zoomable images on this page) -->
+<div class="img-lightbox" id="imgLightbox" role="dialog" aria-modal="true" aria-label="Image fullscreen view">
+  <button class="img-lightbox-close" id="imgLightboxClose" aria-label="Close fullscreen">&times;</button>
+  <img id="imgLightboxImg" src="" alt="" draggable="false">
+</div>
+
 <div id="site-footer"></div>
+
+<script>
+(function () {
+  var lb = document.getElementById('imgLightbox');
+  var lbImg = document.getElementById('imgLightboxImg');
+  var lbClose = document.getElementById('imgLightboxClose');
+  if (!lb) return;
+
+  document.querySelectorAll('.zoomable-img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+})();
+</script>
+
 <script src="js/main.js"></script>
 <script>injectNav('portfolio');</script>
 </body>
