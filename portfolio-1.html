@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Banking Feature Adoption — Cloe Doi</title>
-<meta name="description" content="Product analytics case study — customer segmentation and feature adoption strategy for Zelle for Business, ClickSWITCH, and WealthAccess across 40M+ customer events.">
+<meta name="description" content="Product analytics case study — customer segmentation and feature adoption strategy for online banking features across 40M+ customer events.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -72,7 +72,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    margin-top: 20px;
+    margin-top: 30px;
   }
   .deck-dot {
     width: 9px; height: 9px;
@@ -154,7 +154,7 @@
       <div class="project-meta-item"><div class="project-meta-label">Role</div><div class="project-meta-value">Product Analytics &amp; Feature Strategy</div></div>
       <div class="project-meta-item"><div class="project-meta-label">Period</div><div class="project-meta-value">Jan 2025 – Present</div></div>
       <div class="project-meta-item"><div class="project-meta-label">Features</div><div class="project-meta-value">Zelle for Business · ClickSWITCH · WealthAccess</div></div>
-      <div class="project-meta-item"><div class="project-meta-label">Tools</div><div class="project-meta-value">SQL · Power BI · Python · K-Means</div></div>
+      <div class="project-meta-item"><div class="project-meta-label">Tools</div><div class="project-meta-value">SQL · Power BI · Python</div></div>
     </div>
   </div>
 </section>
@@ -165,7 +165,9 @@
     <div class="highlights-grid">
       <div class="highlight-item reveal"><span class="highlight-num" data-count="40" data-suffix="M+">40M+</span><div class="highlight-label">Digital banking records analyzed</div></div>
       <div class="highlight-item reveal"><span class="highlight-num" data-count="8.5" data-dec="1" data-suffix="%">8.5%</span><div class="highlight-label">Increase in digital engagement</div></div>
-      <div class="highlight-item reveal"><span class="highlight-num" data-count="20" data-suffix="%">20%</span><div class="highlight-label">average adoption rate after launch</div></div>
+      <div class="highlight-item reveal"><span class="highlight-num" data-count="20" data-suffix="%">20%</span><div class="highlight-label">average adoption rate</div></div>
+<div class="highlight-item reveal"><span class="highlight-num" data-count="10" data-suffix="%">10%</span><div class="highlight-label">increase in P2P credit monthly transaction</div></div>
+
           </div>
   </div>
 </section>
@@ -180,7 +182,7 @@
       <h2 class="project-section-title">The product challenge</h2>
       <div class="project-2col">
         <div class="project-text reveal">
-          <p>The digital banking product team wanted to identify growth opportunities by understanding customer behavior and evaluating which emerging financial features could drive higher engagement. The goal was to leverage customer data to <strong>prioritize feature launches, define target segments, and build a data-driven adoption strategy</strong> for new digital capabilities — including <strong>Zelle for Business, ClickSWITCH, and WealthAccess</strong>.</p>
+          <p>The Vice President of Digital Channel wanted to identify growth opportunities by understanding customer behavior and evaluating which emerging financial features could drive higher engagement. The goal was to leverage customer data to <strong>prioritize feature launches, define target segments, and build a data-driven adoption strategy</strong> for new digital capabilities — including <strong>Zelle for Business, ClickSWITCH, and WealthAccess</strong>.</p>
           <p>With over <strong>40M+ digital banking records</strong> spanning online banking activity, transaction behaviors, and core banking transactions, the raw signal existed. What didn't exist was a framework to turn it into product decisions.</p>
         </div>
         <div class="reveal">
@@ -212,22 +214,21 @@
           <p>I partnered with digital banking stakeholders to run end-to-end product analytics — from raw behavioral data through to a ranked launch audience for each feature.</p>
 
           <p><strong>1. Customer behavior analysis</strong></p>
-          <p>Analyzed 40M+ digital banking events and transaction records using SQL and machine learning techniques to understand:</p>
+          <p>Analyzed 40M+ digital banking events and core banking transaction records using SQL and K means clustering (via Python and PowerBI) to understand:</p>
           <ul>
             <li>Digital login frequency</li>
             <li>Online banking feature usage patterns</li>
-            <li>Transaction activity across digital banking and core banking systems</li>
-            <li>Customer balances, financial behaviors</li>
+            <li>EFT Debit and Credit transaction activity across digital banking and core banking systems</li>
+            <li>Customer balances, product combination</li>
             <li>Existing digital product adoption patterns</li>
           </ul>
-
+<p></>
           <p><strong>2. Customer segmentation &amp; target audience identification</strong></p>
           <p>Developed behavioral customer segments to identify the users most likely to adopt each new digital feature. For <strong>Zelle for Business</strong>, I evaluated the business customer opportunity across:</p>
           <ul>
-            <li>Business customers actively using online banking</li>
-            <li>Existing payment behaviors</li>
-            <li>Alternative P2P payment usage patterns</li>
-            <li>Credit transaction volume and frequency</li>
+            <li>Business customers actively using Zelle in consumer accounts</li>
+            <li>Existing P2P payment behaviors and vendor usage</li>
+                        <li>Credit and debit transaction volume and frequency</li>
             <li>Transaction categories and business types</li>
             <li>Current digital engagement level</li>
             <li>Existing feature adoption and digital maturity</li>
@@ -240,19 +241,24 @@
               <div style="font-family:var(--font-mono); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); padding-bottom:8px; border-bottom:1px solid rgba(201,168,76,0.2); margin-bottom:14px;">Data Sources</div>
               <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
                 <li style="font-size:13px; color:var(--muted); line-height:1.5;">Digital banking activity logs <span style="color:var(--dim);">— Q2 Every Valuable Event (Q2EVE)</span></li>
-                <li style="font-size:13px; color:var(--muted); line-height:1.5;">Core banking transaction data <span style="color:var(--dim);">— Silver Lake</span></li>
+                <li style="font-size:13px; color:var(--muted); line-height:1.5;">Core banking transaction data <span style="color:var(--dim);">— Silver Lake (CoreBanking)</span></li>
                 <li style="font-size:13px; color:var(--muted); line-height:1.5;">Client &amp; household data <span style="color:var(--dim);">— Marquis CRM</span></li>
  <li style="font-size:13px; color:var(--muted); line-height:1.5;">Core banking transaction data <span style="color:var(--dim);">— S&P500 Business data</span></li>
               </ul>
+
             </div>
+
             <div>
-              <div style="font-family:var(--font-mono); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); padding-bottom:8px; border-bottom:1px solid rgba(201,168,76,0.2); margin-bottom:14px;">Analytics Methods</div>
+
+  
+              <div style="font-family:var(--font-mono); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); padding-bottom:8px; border-bottom:1px solid rgba(201,168,76,0.2); margin-bottom:20px;">Analytics Methods</div>
               <div style="display:flex; flex-wrap:wrap; gap:8px;">
                 <span class="tool-pill">SQL Extraction &amp; Transformation</span>
                 <span class="tool-pill">Behavioral Segmentation</span>
                 <span class="tool-pill">Feature Adoption Analysis</span>
                 <span class="tool-pill">Cohort Analysis</span>
-                <span class="tool-pill">K-Means Clustering</span>
+                <span class="tool-pill">K-Means Clustering in Python</span>
+
               </div>
             </div>
             <div>
@@ -261,35 +267,23 @@
                 <span class="tool-pill">SQL</span>
                 <span class="tool-pill">Power BI</span>
                 <span class="tool-pill">Python</span>
+<span class="tool-pill">Marquis Executract</span>
               </div>
+
+<p> </p>
+<div></div>
+<p></p>
+<div class="reveal">
+        <img src="assets/images/SQL-Portfolio1.jpg"
+             alt="SQL-Portfolio1"
+             style="width:100%; border-radius:8px; border:1px solid var(--navy-border); margin-top:40px; padding:10px;">
+      </div>
             </div>
           </div>
         </div>
-      </div>
 
-
-  <!-- PRESENTATION DECK -->
-  <section class="project-section">
-    <div class="container">
-      <div class="project-section-label">The Deck</div>
-      <h2 class="project-section-title">Dashboard walkthrough</h2>
-      <p style="color:var(--muted); max-width:620px; margin:-4px 0 32px; line-height:1.7; font-size:15px;">Click through the full strategy deck below — use the arrows, the dots, or your keyboard's ← and → keys. Click any slide to view it fullscreen.</p>
-
-      <div class="deck-carousel reveal" id="deck">
-        <div class="deck-stage">
-          <button class="deck-arrow deck-prev" id="deckPrev" aria-label="Previous slide">
-            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <img class="deck-img" id="deckImg" src="assets/images/ccb_slides/slide01.jpg" alt="Presentation slide 1" draggable="false">
-          <button class="deck-arrow deck-next" id="deckNext" aria-label="Next slide">
-            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <div class="deck-count"><span id="deckCur">1</span> / <span id="deckTotal">2</span></div>
-        </div>
-        <div class="deck-dots" id="deckDots"></div>
-      </div>
-    </div>
-  </section>
+</section>
+  
 
   <!-- FULLSCREEN LIGHTBOX -->
   <div class="deck-lightbox" id="deckLightbox" role="dialog" aria-modal="true" aria-label="Slide fullscreen view">
@@ -338,6 +332,10 @@
     </div>
   </section>
 
+
+  
+
+
   <!-- 04 RESULTS -->
   <section class="project-section" style="background:var(--navy-mid);">
     <div class="container">
@@ -349,6 +347,31 @@
         <div class="result-card"><span class="result-num" data-count="40" data-suffix="M+">40M+</span><div class="result-desc">Digital banking records analyzed across online banking, transaction activity, and core banking systems</div></div>
         <div class="result-card"><span class="result-num" data-count="3">3</span><div class="result-desc">Digital features taken from opportunity identification through segmentation, launch targeting, and adoption measurement</div></div>
       </div>
+
+
+  <!-- PRESENTATION DECK -->
+  <section class="project-section">
+    <div class="container">
+      <div class="project-section-label">Dashboard</div>
+      <h2 class="project-section-title">Dashboard walkthrough</h2>
+      <p style="color:var(--muted); max-width:620px; margin:-4px 0 32px; line-height:1.7; font-size:15px;">Click through the full strategy deck below — use the arrows, the dots, or your keyboard's ← and → keys. Click any slide to view it fullscreen.</p>
+
+      <div class="deck-carousel reveal" id="deck">
+        <div class="deck-stage">
+          <button class="deck-arrow deck-prev" id="deckPrev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <img class="deck-img" id="deckImg" src="assets/images/ccb_slides/slide01.jpg" alt="Presentation slide 1" draggable="false">
+          <button class="deck-arrow deck-next" id="deckNext" aria-label="Next slide">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="deck-count"><span id="deckCur">1</span> / <span id="deckTotal">2</span></div>
+        </div>
+        <div class="deck-dots" id="deckDots"></div>
+      </div>
+    </div>
+  </section>
+
 
       <div class="reveal" style="margin-top:48px;">
         <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--violet-soft); margin-bottom:18px;">Product Skills Demonstrated</div>
@@ -370,6 +393,7 @@
     </div>
   </section>
 
+ 
 </div>
 
 

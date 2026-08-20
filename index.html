@@ -9,6 +9,47 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  /* Certificate slider — scoped styles, safe to keep here or move into css/style.css */
+  .cert-slider{position:relative;width:100%;max-width:560px;margin:0 auto;overflow:hidden;border-radius:10px;background:#fff;box-shadow:0 20px 50px -20px rgba(10,20,40,.35);}
+  .cert-slider-track{display:flex;transition:transform 2s cubic-bezier(.65,0,.35,1);}
+  .cert-slide{flex:0 0 100%;width:100%;aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;background:#fff;}
+  .cert-slide img.cert-img{display:block;width:100%;height:100%;object-fit:contain;padding:16px;box-sizing:border-box;cursor:zoom-in;}
+  .cert-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(10,20,40,.6);color:#fff;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .25s,border-color .25s;}
+  .cert-nav:hover{background:var(--navy,#0D1B3E);border-color:var(--gold,#C9A84C);}
+  .cert-prev{left:12px;}
+  .cert-next{right:12px;}
+  .cert-dots{display:flex;justify-content:center;gap:8px;padding:14px 0;background:#fff;}
+  .cert-dot{width:8px;height:8px;border-radius:50%;background:#d8d8d8;border:none;padding:0;cursor:pointer;transition:background .25s,transform .25s;}
+  .cert-dot.active{background:var(--gold,#C9A84C);transform:scale(1.3);}
+  @media (max-width:640px){.cert-slider{max-width:100%;}.cert-slide{aspect-ratio:4/3;}}
+
+  /* Testimonials slider — pages through the cards 3 at a time (last page can be
+     partial, e.g. 7 cards = pages of 3, 3, 1). Each page reuses the exact same
+     grid math as the original .testi-grid (3 columns, 24px gap), so every card
+     is still the same size it always was — only now it's grouped into pages
+     that slide as a unit. JS groups .testi-card elements into .testi-page
+     wrappers automatically, so adding a new testimonial is still just adding
+     one more .slide block; no manual batching needed. */
+  .testi-slider{position:relative;width:100%;}
+  .testi-slider .slider-viewport{overflow:hidden;border-radius:8px;}
+  .testi-slider .slider-track{display:flex;align-items:flex-start;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+  .testi-slider .testi-page{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .testi-controls{display:flex;align-items:center;gap:18px;margin-top:24px;}
+  .testi-nav{width:36px;height:36px;border-radius:50%;border:1px solid var(--navy-border);background:rgba(13,27,62,.6);color:var(--white);font-size:19px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .2s,border-color .2s;}
+  .testi-nav:hover{background:var(--violet);border-color:var(--violet);}
+  .testi-dots{display:flex;align-items:center;gap:8px;}
+  .testi-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.22);border:none;padding:0;cursor:pointer;transition:background .2s,width .2s;}
+  .testi-dot.active{background:var(--violet-soft);width:22px;border-radius:4px;}
+  @media (max-width:1000px){.testi-slider .testi-page{grid-template-columns:1fr;}}
+
+  /* Click-to-zoom lightbox */
+  .lightbox-overlay{position:fixed;inset:0;background:rgba(6,10,24,.92);display:none;align-items:center;justify-content:center;z-index:9999;padding:40px;cursor:zoom-out;}
+  .lightbox-overlay.active{display:flex;}
+  .lightbox-overlay img{max-width:92vw;max-height:88vh;border-radius:6px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);}
+  .lightbox-close{position:absolute;top:24px;right:32px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .25s;}
+  .lightbox-close:hover{background:rgba(255,255,255,.18);}
+</style>
 </head>
 <body>
 
@@ -22,7 +63,7 @@
         <div class="hero-eyebrow fade-up delay-1">Product · Strategy · Analytics</div>
         <h1 class="hero-name fade-up delay-2">Cloe Doi</h1>
         <p class="hero-title fade-up delay-3">Data-Driven Strategist. MBA</p>
-        <p class="hero-desc fade-up delay-4">Welcome to my website! I'm an experienced Product Marketing Analyst with 10 years of experience in turning transaction data, customer behavior, and market signals into growth strategies that move the needle.</p>
+        <p class="hero-desc fade-up delay-4">Welcome to my website! I'm an experienced Product Analyst with 10 years of experience in turning customer data and market signals into product strategies that move the needle.</p>
         <div class="hero-btns fade-up delay-5">
           <a href="https://cdoi90.github.io/cloedoi.github.io/portfolio-1.html" class="btn-primary">View My Work</a>
           <a href="#contact" class="btn-ghost">Let's Connect</a>
@@ -53,13 +94,13 @@
       <div class="metric-item reveal">
         <span class="metric-num" data-count="20" data-suffix="%">20%</span>
         <div class="metric-label">Feature Adoption Rate</div>
-        <span class="metric-sub">Product Adoption &amp; Acquisition, K-Means Clustering &amp; Neural Networks</span>
+        <span class="metric-sub">Product Adoption & Activation</span>
       </div>
 
       <div class="metric-item reveal">
-        <span class="metric-num" data-count="1" data-prefix="$" data-suffix="M">$1M</span>
-        <div class="metric-label">Incremental Deposit Amount</div>
-        <span class="metric-sub">Retention Strategy, Churn Prediction &amp; Driver Analysis</span>
+        <span class="metric-num" data-count="8.5" data-suffix="%">8.5%</span>
+        <div class="metric-label">Increase in Engagement Rate</div>
+        <span class="metric-sub">Engagement Driver Analysis</span>
       </div>
 
       <div class="metric-item reveal">
@@ -112,10 +153,10 @@
         <div class="portfolio-card reveal">
           <img class="portfolio-card-img" src="assets/images/portfolio-card-1.png" alt="Project cover">
           <div class="portfolio-card-body">
-            <div class="portfolio-card-tag">Digital Banking Feature Adoption · Customer Segmentation Strategy</div>
+            <div class="portfolio-card-tag">SQL · PowerBI · SilverLake · Q2 EVE Extract</div>
             <h3 class="portfolio-card-title">Feature Adoption &amp; Segmentation</h3>
             <p class="portfolio-card-desc">Using 40M+ behavioral records to decide which features to launch, and to whom to launch them.</p>
-            <div class="portfolio-card-kpis"><span class="kpi-badge">↑ 8.5% App Engagement</span><span class="kpi-badge">40M+ Records</span><span class="kpi-badge">Feature Prioritization</span></div>
+            <div class="portfolio-card-kpis"><span class="kpi-badge">↑ 8.5% App Engagement</span><span class="kpi-badge">40M+ Records</span><span class="kpi-badge">10% Increase in Transaction</span></div>
             <div class="portfolio-card-footer">
               <span class="portfolio-card-company">Capital City Bank · 2025</span>
               <span class="portfolio-card-link">View Case Study <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
@@ -126,14 +167,29 @@
 
       <a href="portfolio-4.html" style="text-decoration:none;color:inherit;">
         <div class="portfolio-card reveal">
-          <img class="portfolio-card-img" src="assets/images/portfolio-card-2.png" alt="Project cover">
+          <img class="portfolio-card-img" src="assets/images/portfolio-card-4.png" alt="Project cover">
           <div class="portfolio-card-body">
-            <div class="portfolio-card-tag">Product Pricing · Consumer Sensitivity · Market Analysis</div>
+            <div class="portfolio-card-tag">SQL · Tableau· Anaplan</div>
             <h3 class="portfolio-card-title">Pricing Restructure Strategy</h3>
             <p class="portfolio-card-desc">Using 2M+ sales records and consumer sensitivity reports to restructure pricing schemes that strengthened wholesale partnerships and increased sales.</p>
             <div class="portfolio-card-kpis"><span class="kpi-badge">+$14M incremental revenue</span><span class="kpi-badge">30K sales units</span><span class="kpi-badge">5 product lines</span></div>
             <div class="portfolio-card-footer">
               <span class="portfolio-card-company">Mattel · 2023</span>
+              <span class="portfolio-card-link">View Case Study <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </a>
+<a href="portfolio-2.html" style="text-decoration:none;color:inherit;">
+        <div class="portfolio-card reveal">
+          <img class="portfolio-card-img" src="assets/images/portfolio-card-2.jpeg" alt="Project cover">
+          <div class="portfolio-card-body">
+            <div class="portfolio-card-tag">PowerBI</div>
+            <h3 class="portfolio-card-title">Market Growth Strategy</h3>
+            <p class="portfolio-card-desc">Using 70K app store records to analyze the market trends and identify opportunities for market entry and growth strategies</p>
+            <div class="portfolio-card-kpis"><span class="kpi-badge">3 underserved markets</span><span class="kpi-badge">3 localization opportunities</span><span class="kpi-badge">30K potential users</span></div>
+            <div class="portfolio-card-footer">
+              <span class="portfolio-card-company">Personal Project · 2025</span>
               <span class="portfolio-card-link">View Case Study <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
             </div>
           </div>
@@ -189,69 +245,6 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience" class="section-pad">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-eyebrow">Work Experience</div>
-      <h2 class="section-title">Career Timeline</h2>
-      <div class="gold-line"></div>
-      <p class="section-desc">10 years across banking, consumer goods, and B2B tech — always leading with data.</p>
-    </div>
-    <div class="timeline">
-
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Jan 2025 – Present</div>
-        <div class="tl-role">Product Analyst</div>
-        <div class="tl-company">Capital City Bank · Banking · Florida, USA</div>
-        <div class="tl-tags"><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Python</span><span class="tag">Microsoft Fabric</span><span class="tag">K-Means Clustering</span><span class="tag">Cohort Analysis</span><span class="tag">CLV</span></div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-date">May 2023 – Aug 2023</div>
-        <div class="tl-role">Marketing Strategy Intern</div>
-        <div class="tl-company">Mattel · American Girl Brand · Wisconsin, USA</div>
-        <div class="tl-tags"><span class="tag">Tableau</span><span class="tag">SQL</span><span class="tag">Pricing Strategy</span><span class="tag">P&amp;L Analysis</span><span class="tag">Hypothesis Testing</span><span class="tag">Anaplan</span></div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Aug 2021 – Jul 2022</div>
-        <div class="tl-role">Digital Marketing Specialist</div>
-        <div class="tl-company">SunBytes · B2B Tech Startup · Ho Chi Minh, Vietnam</div>
-        <div class="tl-tags"><span class="tag">Jira</span><span class="tag">Microsoft Clarity</span><span class="tag">Google Looker</span><span class="tag">Google Analytics</span><span class="tag">A/B Testing</span><span class="tag">SEO / SEM</span></div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Aug 2018 – Mar 2021</div>
-        <div class="tl-role">Marketing Team Leader</div>
-        <div class="tl-company">SPS Global · Top 100 Global BPO · Ho Chi Minh, Vietnam</div>
-        <div class="tl-tags"><span class="tag">A/B Testing</span><span class="tag">Oracle Eloqua</span><span class="tag">Excel</span><span class="tag">Data Analysis</span><span class="tag">Team Leadership</span></div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Feb 2018 – May 2018</div>
-        <div class="tl-role">Digital Sales Intern</div>
-        <div class="tl-company">Citi · Banking · Ho Chi Minh, Vietnam</div>
-        <div class="tl-tags"><span class="tag">Excel</span><span class="tag">A/B Testing</span><span class="tag">Google Ads</span><span class="tag">Data Analysis</span><span class="tag">Team Collaboration</span></div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Jun 2014 – Jun 2016</div>
-        <div class="tl-role">Digital Coordinator</div>
-        <div class="tl-company">Concentrix · Top 100 Global BPO · Manila, Philippines</div>
-        <div class="tl-tags"><span class="tag">Adobe Analytics</span><span class="tag">A/B Testing</span><span class="tag">Excel</span><span class="tag">Data Analysis</span><span class="tag">Team Collaboration</span></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 
 <!-- TOOLS -->
 <section id="tools" class="section-pad">
@@ -259,16 +252,29 @@
     <div class="tools-layout">
       <div class="reveal">
         <div class="section-eyebrow">How I Work</div>
-        <h2 class="section-title">Tools &amp;<br>Skills</h2>
+        <h2 class="section-title">Tools & Skills</h2>
         <div class="gold-line"></div>
         <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:36px;">From raw SQL queries to polished executive dashboards — I use analytics tools to drive product and marketing strategy.</p>
-        <div class="cert-list">
-          <div class="cert-item"><div class="cert-dot"></div><span class="cert-text">SQL for Data Analyst — DataCamp Certified</span></div>
-          <div class="cert-item"><div class="cert-dot"></div><span class="cert-text">Microsoft Data Analyst</span></div>
-          <div class="cert-item"><div class="cert-dot"></div><span class="cert-text">Google Analytics 4 Certified</span></div>
-          <div class="cert-item"><div class="cert-dot"></div><span class="cert-text">Google Ads Search Certified</span></div>
-          <div class="cert-item"><div class="cert-dot"></div><span class="cert-text">MBA — Marketing Analytics &amp; Insights, UW-Madison</span></div>
-          <div class="cert-item"><div class="cert-dot"></div><span class="cert-text">MS Data Science &amp; AI — Campbellsville University (2027)</span></div>
+ <div class="certificate">
+                   <div class="reveal">
+          <div class="cert-slider">
+            <div class="cert-slider-track">
+              <div class="cert-slide">
+                <img src="assets/images/microsoft-certification.jpeg"
+                     alt="Cloe Doi — Microsoft Certified: Power BI Data Analyst Associate"
+                     class="zoomable-img cert-img">
+              </div>
+              <div class="cert-slide">
+                <img src="assets/images/SQL-Certificate.jpeg"
+                     alt="Cloe Doi — DataCamp: Intermediate SQL Certificate"
+                     class="zoomable-img cert-img">
+              </div>
+            </div>
+            <button type="button" class="cert-nav cert-prev" aria-label="Previous certificate">‹</button>
+            <button type="button" class="cert-nav cert-next" aria-label="Next certificate">›</button>
+            <div class="cert-dots"></div>
+          </div>
+</div>
         </div>
       </div>
       <div class="tools-cats reveal">
@@ -299,27 +305,62 @@
       <div class="gold-line"></div>
       <p class="section-desc">Testimonials from managers and team members across industries.</p>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Cloe is an <strong>analytical and creative thinker</strong> who would be an <strong>asset on any team</strong>."</p>
-        <div class="testi-divider"></div>
-        <div class="testi-name">Kimberly Miescher</div>
-        <div class="testi-role">Senior Brand Manager · Mattel</div>
+    <div class="testi-slider reveal">
+      <div class="slider-viewport">
+        <div class="slider-track">
+          <div class="slide">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">"Cloe is an <strong>analytical and creative thinker</strong> who would be an <strong>asset on any team</strong>."</p>
+              <div class="testi-divider"></div>
+              <div class="testi-name">Kimberly Miescher</div>
+              <div class="testi-role">Senior Brand Manager · Mattel</div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">"Cloe has done an <strong>excellent job</strong> creating a dashboard that has given us <strong>insights into our Online Banking platform of which we've never had before</strong>. The team now can identify key drivers of engagement and create segments to market to specific users</strong>."</p>
+              <div class="testi-divider"></div>
+              <div class="testi-name">Rachel Thursby</div>
+              <div class="testi-role">Analytics Manager · Capital City Bank</div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">"Her <strong>unrelenting curiosity</strong>, the <strong>pursuit of excellence</strong>, and ability to collaborate with others have <strong>advanced our company goals</strong>."</p>
+              <div class="testi-divider"></div>
+              <div class="testi-name">Anatolijus Fouracre</div>
+              <div class="testi-role">CEO · SPS Global</div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">"She has the <strong>excellent people management skills</strong>. Her <strong>organizational and time management skills</strong> are also impressive, able to <strong>multi tasks on different projects</strong> and with <strong>different person in charge</strong> at the same time."</p>
+              <div class="testi-divider"></div>
+              <div class="testi-name">Eric Barrios</div>
+              <div class="testi-role">Senior Manager · Concentrix</div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">"She has the <strong>talent to combine theoretical online marketing knowledge</strong> with a <strong>pragmatic work attitude</strong>."</p>
+              <div class="testi-divider"></div>
+              <div class="testi-name">Joram Dees</div>
+              <div class="testi-role">Marketing Manager · Sunbytes</div>
+            </div>
+          </div>
+         
+          </div>
+        </div>
       </div>
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Her <strong>unrelenting curiosity</strong>, the <strong>pursuit of excellence</strong>, and ability to collaborate with others have <strong>advanced our company goals</strong>."</p>
-        <div class="testi-divider"></div>
-        <div class="testi-name">Anatolijus Fouracre</div>
-        <div class="testi-role">CEO · SP OS</div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"She has the <strong>talent to combine theoretical online marketing knowledge</strong> with a <strong>pragmatic work attitude</strong>."</p>
-        <div class="testi-divider"></div>
-        <div class="testi-name">Joram Dees</div>
-        <div class="testi-role">Marketing Manager · SB</div>
+      <div class="testi-controls">
+        <button type="button" class="testi-nav testi-prev" aria-label="Previous testimonial">‹</button>
+        <div class="testi-dots"></div>
+        <button type="button" class="testi-nav testi-next" aria-label="Next testimonial">›</button>
       </div>
     </div>
   </div>
@@ -327,7 +368,7 @@
 
 
 <!-- CONTACT -->
-<section id="contact" style="background:var(--navy); padding-bottom:0; position:relative; z-index:1;">
+<section id="contact" style="background:var(--navy); padding-top: 20px; padding-bottom:0; position:relative; z-index:1;">
   <div class="container">
           <div>
         <div class="section-eyebrow">Connect With Me</div>
@@ -347,17 +388,25 @@
           </div>
           <div class="contact-row">
             <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--violet-soft);fill:none;stroke-width:1.5;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Tallahassee, Florida · Open to relocation</span>
-          </div>
+            <span>Tallahassee, Florida · Open to relocation</span> </div>
+
+
+<div class="contact-row">
+
+  <svg viewBox="0 0 24 24" style="width:16px;height:16px;padding-bottom:20px; padding-top:10px;stroke:var(--violet-soft);fill:none;stroke-width:1.5;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><a href="assets/CloeDoi_Resume.pdf" target="_blank" rel="noopener" class="btn-ghost">Download Resume</a></span> </div>
+</span>
         </div>
-      </div>
-      <div class="contact-actions">
-        <a href="https://www.linkedin.com/in/ha-doi/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
-        <a href="mailto:hanganvudoi@gmail.com" class="btn-ghost">Send an Email</a>
-        <a href="assets/CloeDoi_Resume.pdf" target="_blank" rel="noopener" class="btn-ghost">Download Resume</a>
-      </div>
-    </div>
-  
+
+
+<div><p></p></div>
+
+<div class="contact-row"> 
+
+            <svg viewBox="0 0 24 24" style="width:16px;padding-bottom: 10px; padding-top:10px;height:16px;stroke:var(--violet-soft);fill:none;stroke-width:1.5;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+
+            <span><a href="https://www.linkedin.com/in/cloe-doi/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a> </span> </div>
+     
   <div class="footer-bar">
     <div class="container">
       <div class="footer-inner">
@@ -373,7 +422,129 @@
 </section>
 
 <div id="site-footer"></div>
+
+<!-- Click-to-zoom lightbox (used by any .zoomable-img) -->
+<div class="lightbox-overlay" id="img-lightbox">
+  <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+  <img src="" alt="">
+</div>
+
 <script src="js/main.js"></script>
 <script>injectNav('home');</script>
+<script>
+(function(){
+  function initSlider(slider, o){
+    var track = slider.querySelector(o.trackSel);
+    var slides = Array.prototype.slice.call(slider.querySelectorAll(o.slideSel));
+    var dotsWrap = slider.querySelector(o.dotsSel);
+    var prevBtn = slider.querySelector(o.prevSel);
+    var nextBtn = slider.querySelector(o.nextSel);
+    var index = 0;
+    var timer;
+
+    if (slides.length <= 1) {
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+      if (dotsWrap) dotsWrap.style.display = 'none';
+      return;
+    }
+
+    slides.forEach(function(_, i){
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = o.dotClass + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.addEventListener('click', function(){ goTo(i); resetTimer(); });
+      dotsWrap.appendChild(dot);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.' + o.dotClass));
+
+    function goTo(i){
+      index = (i + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      dots.forEach(function(d, di){ d.classList.toggle('active', di === index); });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function(){ goTo(index - 1); resetTimer(); });
+    if (nextBtn) nextBtn.addEventListener('click', function(){ goTo(index + 1); resetTimer(); });
+
+    var startX = null;
+    track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function(e){
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) { goTo(dx < 0 ? index + 1 : index - 1); resetTimer(); }
+      startX = null;
+    }, { passive: true });
+
+    function startTimer(){ timer = setInterval(function(){ goTo(index + 1); }, o.interval || 6000); }
+    function resetTimer(){ clearInterval(timer); startTimer(); }
+    startTimer();
+    slider.addEventListener('mouseenter', function(){ clearInterval(timer); });
+    slider.addEventListener('mouseleave', startTimer);
+  }
+
+  document.querySelectorAll('.cert-slider').forEach(function(slider){
+    initSlider(slider, {
+      trackSel: '.cert-slider-track', slideSel: '.cert-slide', dotsSel: '.cert-dots',
+      prevSel: '.cert-prev', nextSel: '.cert-next', dotClass: 'cert-dot', interval: 6000
+    });
+  });
+
+  function groupIntoPages(slider, groupSize){
+    var track = slider.querySelector('.slider-track');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.testi-card'));
+    if (!cards.length) return;
+    cards.forEach(function(card){ if (card.parentNode) card.parentNode.removeChild(card); });
+    track.innerHTML = '';
+    for (var i = 0; i < cards.length; i += groupSize) {
+      var page = document.createElement('div');
+      page.className = 'testi-page';
+      cards.slice(i, i + groupSize).forEach(function(card){ page.appendChild(card); });
+      track.appendChild(page);
+    }
+  }
+
+  document.querySelectorAll('.testi-slider').forEach(function(slider){
+    groupIntoPages(slider, 3);
+    initSlider(slider, {
+      trackSel: '.slider-track', slideSel: '.testi-page', dotsSel: '.testi-dots',
+      prevSel: '.testi-prev', nextSel: '.testi-next', dotClass: 'testi-dot', interval: 7000
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var overlay = document.getElementById('img-lightbox');
+  if (!overlay) return;
+  var lbImg = overlay.querySelector('img');
+  var closeBtn = overlay.querySelector('.lightbox-close');
+
+  function openLightbox(src, alt){
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  document.querySelectorAll('.zoomable-img').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el.src, el.alt); });
+  });
+  overlay.addEventListener('click', function(e){
+    if (e.target === overlay) closeLightbox();
+  });
+  closeBtn.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeLightbox();
+  });
+})();
+</script>
 </body>
 </html>
