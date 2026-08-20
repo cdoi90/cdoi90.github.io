@@ -17,7 +17,7 @@ function injectNav(activePage) {
           <li><a href="portfolio.html" ${activePage==='portfolio'?'class="active"':''}>Portfolio</a></li>
           <li><a href="index.html#contact" ${activePage==='contact'?'class="active"':''}>Contact</a></li>
         </ul>
-        <a href="assets/Doi_Resume.pdf" class="nav-cv" target="_blank" rel="noopener">Download CV</a>
+        <a href="assets/CloeDoi_Resume.pdf" class="nav-cv" target="_blank" rel="noopener">Download CV</a>
         <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </button>
@@ -159,6 +159,58 @@ function animateCounters() {
   }, { threshold: 0.5 });
   counters.forEach(c => obs.observe(c));
 }
+
+/* ── SLIDERS ── */
+document.querySelectorAll('[data-slider]').forEach(slider => {
+  const track  = slider.querySelector('.slider-track');
+  const slides = [...slider.querySelectorAll('.slide')];
+  const dotsEl = slider.querySelector('.slider-dots');
+  const prev   = slider.querySelector('.slider-prev');
+  const next   = slider.querySelector('.slider-next');
+  if (slides.length < 2) { slider.querySelectorAll('.slider-btn').forEach(b => b.remove()); return; }
+
+  let i = 0;
+
+  const dots = slides.map((_, n) => {
+    const d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'slider-dot';
+    d.setAttribute('aria-label', `Dashboard ${n + 1}`);
+    d.addEventListener('click', () => go(n));
+    dotsEl.appendChild(d);
+    return d;
+  });
+
+  function go(n) {
+    i = Math.max(0, Math.min(n, slides.length - 1));
+    track.style.transform = `translateX(-${i * 100}%)`;
+    dots.forEach((d, n2) => d.classList.toggle('active', n2 === i));
+    prev.disabled = i === 0;
+    next.disabled = i === slides.length - 1;
+  }
+
+  prev.addEventListener('click', () => go(i - 1));
+  next.addEventListener('click', () => go(i + 1));
+
+  // keyboard
+  slider.tabIndex = 0;
+  slider.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); go(i - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(i + 1); }
+  });
+
+  // swipe
+  let x0 = null;
+  slider.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  slider.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 45) go(dx < 0 ? i + 1 : i - 1);
+    x0 = null;
+  }, { passive: true });
+
+  go(0);
+});
 
 /* ── INIT ALL ── */
 document.addEventListener('DOMContentLoaded', () => {
