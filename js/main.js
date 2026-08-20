@@ -74,7 +74,7 @@ function injectFooter() {
           <div class="contact-actions">
             <a href="https://www.linkedin.com/in/ha-doi/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
             <a href="mailto:hanganvudoi@gmail.com" class="btn-ghost">Send an Email</a>
-            <a href="assets/Doi_Resume.pdf" target="_blank" rel="noopener" class="btn-ghost">Download Resume</a>
+            <a href="assets/images/CloeDoi_Resume.pdf" target="_blank" rel="noopener" class="btn-ghost">Download Resume</a>
           </div>
         </div>
       </div>
