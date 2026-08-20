@@ -17,7 +17,7 @@ function injectNav(activePage) {
           <li><a href="portfolio.html" ${activePage==='portfolio'?'class="active"':''}>Portfolio</a></li>
           <li><a href="index.html#contact" ${activePage==='contact'?'class="active"':''}>Contact</a></li>
         </ul>
-        <a href="assets/CloeDoi_Resume.pdf" class="nav-cv" target="_blank" rel="noopener">Download CV</a>
+        <a href="assets/images/CloeDoi_Resume.pdf" class="nav-cv" target="_blank" rel="noopener">Download Resume</a>
         <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </button>
